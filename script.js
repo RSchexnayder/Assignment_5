@@ -40,7 +40,7 @@ let inputChecker = function(){
    for(let i = 0; i < responses.length; i++){
       let currentResponse = responses[i].value;
       if (currentResponse === ""){
-         invalidResponseCounter += 1;
+         window.alert("All fields are required")
     } else if (i === 0 || i === 1){
          if (stringChecker(currentResponse)=== true){
          // valid response
@@ -57,7 +57,7 @@ let inputChecker = function(){
    }
    if (invalidResponseCounter !== 0){
       event.preventDefault();
-      window.alert("All fields are required")
+      window.alert("Make sure to enter valid information for each field!")
   }
   updatePilotInfo()
  }
