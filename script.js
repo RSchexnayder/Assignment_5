@@ -55,12 +55,13 @@ function init() {
       document.getElementById("launchStatus").style.color = "green";
    }
 
-   let randomDestination = function(){
-      return (Math.floor(Math.random()* 6));
+   let randomDestination = function () {
+      return (Math.floor(Math.random() * 6));
 
    }
    let inputChecker = function () {
       let invalidResponseCounter = 0;
+      readyForTakeoff()
       for (let i = 0; i < responses.length; i++) {
          let currentResponse = responses[i].value;
          if (currentResponse === "") {
@@ -90,20 +91,20 @@ function init() {
       if (invalidResponseCounter !== 0) {
          event.preventDefault();
          window.alert("Make sure to enter valid information for each field!")
-      }
+      } 
       event.preventDefault();
-      readyForTakeoff()
       updatePilotInfo()
    }
 
    formSubmit.addEventListener("click", inputChecker);
-   
+
 
    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
-      return response.json();}).then(function (json) {
+      return response.json();
+   }).then(function (json) {
       console.log(json);
       let destination = randomDestination();
-       document.getElementById("missionTarget").innerHTML =  (`<h2>Mission Destination</h2>
+      document.getElementById("missionTarget").innerHTML = (`<h2>Mission Destination</h2>
        <ol>
           <li>Name: ${json[destination].name}</li>
           <li>Diameter: ${json[destination].diameter}</li>
@@ -112,7 +113,7 @@ function init() {
           <li>Number of Moons: ${json[destination].moons}</li>
        </ol>
        <img src="${json[destination].image}">`)
-      });
+   });
 
 }
 window.onload = init;
